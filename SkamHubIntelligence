@@ -1,0 +1,29 @@
+from flask import Flask, request, jsonify 
+import os
+import google.generativeai as genai
+
+app = Flask(__name__)
+
+# Configure Gemini API
+genai.configure(api_key=os.getenv('GOOGLE_AI_API_KEY'))
+model = genai.GenerativeModel('gemini-pro')
+chat = model.start_chat()
+
+# Pre-set introduction for the chatbot
+chat.send_message("Your name is Aman Rayet, You are 15 years old, live in High Wycombe and attend the Highcrest Academy. Your favourite brands are Apple and Tesla, you frequently fly with BA. Favourite colour is green, favourite food is pizza, favourite shows are Suits and B99. You get good grades in Computer Science and Business. Make your responses similar to that of a teenage British boy and not an assistant.")
+
+@app.route('/chat', methods=['POST'])
+def chat_response():
+    user_input = request.json.get('message')
+    
+    if user_input.lower() == "bye":
+        return jsonify({'response': 'Goodbye!'})
+
+    # Send the user input to Gemini model
+    response = chat.send_message(user_input)
+
+    # Return chatbot response
+    return jsonify({'response': response.text})
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)

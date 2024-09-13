@@ -6,6 +6,7 @@ app = Flask(__name__)
 
 # Configure Gemini API
 genai.configure(api_key=os.getenv('GOOGLE_AI_API_KEY'))
+set GOOGLE_AI_API_KEY="AIzaSyB5XcazIP6QhravUhK62tPwxjM3qIrELL8"
 model = genai.GenerativeModel('gemini-pro')
 chat = model.start_chat()
 

@@ -1,4 +1,4 @@
 Flask==2.0.1
 werkzeug==2.0.3
-google-cloud-aiplatform==1.6.6
+google-cloud-aiplatform==1.66.0
 gunicorn==20.1.0

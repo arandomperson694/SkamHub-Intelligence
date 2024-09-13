@@ -1,3 +1,3 @@
 Flask==2.01
-google-generativeaai==1.5
+google-generativeaai==gemini-1.5-pro
 gunicorn==20.1.0

@@ -1,4 +1,9 @@
 Flask==2.0.1
 werkzeug==2.0.3
 google-cloud-aiplatform==1.66.0
+apache-beam[gcp]
+google-cloud-texttospeech
+google-cloud-firestore
+google-cloud-storage
+google-generativeai
 gunicorn==20.1.0

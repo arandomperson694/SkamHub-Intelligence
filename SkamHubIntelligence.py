@@ -18,9 +18,12 @@ genai.configure(api_key=api_key)
 model = genai.GenerativeModel('gemini-pro')
 chat = model.start_chat()
 
+# Initial introduction message
+intro_message = ("You are an assistant called SkamHub Intelligence that helps people search for web games")
+
 @app.route('/')
 def home():
-    return "Aman Intelligence is running!"
+    return "SkamHub Intelligence is running!"
 
 @app.route('/chat', methods=['POST'])
 def chat_with_ai():
@@ -29,12 +32,19 @@ def chat_with_ai():
         if not user_input:
             return jsonify({"error": "No input provided"}), 400
         
-        response = chat.send_message(user_input)
-        return jsonify({"response": response.text})
+        # Send the initial introduction message if it's the first request
+        if user_input.lower() == "start":
+            response = intro_message
+        else:
+            # Send user input to the chatbot and get a response
+            response = chat.send_message(user_input).text
+        
+        return jsonify({"response": response})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=10000)
+
 
 

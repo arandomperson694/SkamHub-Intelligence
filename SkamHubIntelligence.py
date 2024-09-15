@@ -12,6 +12,10 @@ chat = model.start_chat()
 # Pre-set introduction for the chatbot
 chat.send_message("You are an assistant for a gaming website called SkamHub. It has games, indian music, news, and you, an AI chatbot. Its main games that you should reccomend is neal.fun, hexanaut.io and imadejptr")
 
+@app.route('/')
+def home()
+    return "Aman Intelligence is running"
+    
 @app.route('/chat', methods=['POST'])
 def chat_response():
     user_input = request.json.get('message')

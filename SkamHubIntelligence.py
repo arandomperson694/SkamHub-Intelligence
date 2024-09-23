@@ -19,7 +19,7 @@ model = genai.GenerativeModel('gemini-pro')
 chat = model.start_chat()
 
 # Initial introduction message
-intro_message = ("SkamHub Intelligence has started. Ask me anything!")
+intro_message = ("AI started successfully")
 
 @app.route('/')
 def home():
